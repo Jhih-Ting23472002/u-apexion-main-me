@@ -1,14 +1,21 @@
 <?php require __DIR__ . "/__connect_db.php";
-$sql= "SELECT* FROM product";
-$product = $pdo->query($sql)->fetchAll();
+$perPage=2;
+$t_sql ="SELECT COUNT(1) FROM product";
+// 算總比數
+$totalRows= $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
+$totaPages= ceil($totalRow/$perPage);
+
+//提取表單資料
+$sql = "SELECT* FROM product";
+$products = $pdo->query($sql)->fetchAll();
 ?>
 <?php require __DIR__ . "/__html_head.php"; ?>
 <div class="d-flex">
 <?php require __DIR__ . "/__navbar.php"; ?>
 <div class="container-fluid">
-<nav class="navbar navbar-expand-lg navbar-light mt-3">
+<nav class="navbar navbar-expand-lg navbar-light pt-3 shadow ">
   <div class="container-fluid">
-    <a class="navbar text-light" href="#">周邊商品</a>
+    <a class="navbar text-warning" href="product.php" style="text-decoration:none;">所有商品</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -39,8 +46,7 @@ $product = $pdo->query($sql)->fetchAll();
           </ul>
         </li>
       </ul>
-      
-      <button type="button" class="btn btn-info">新增商品</button>
+      <button type="button" class="btn btn-info"><a class="text-dark" href="product_new.php" style="text-decoration:none;">新增商品</a></button>
       <form class="d-flex align-items-center ms-2">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-warning" type="submit">Search</button>
@@ -49,28 +55,56 @@ $product = $pdo->query($sql)->fetchAll();
   </div>
 </nav>
 <!-- 下方列表 -->
-<div class="bd-example mt-3">
+<div class="bd-example p-3">
   <table class="table table-hover text-light">
       <thead>
     <tr class="text-info">
-      <th scope="col">sid</th>
-      <th scope="col">category</th>
-      <th scope="col">product_name</th>
-      <th scope="col">img</th>
-      <th scope="col">size</th>
-      <th scope="col">quantity</th>
-      <th scope="col">price</th>
+      <th scope="col">編號</th>
+      <th scope="col">分類</th>
+      <th scope="col">商品名稱</th>
+      <th scope="col">產品照片</th>
+      <th scope="col">尺寸</th>
+      <th scope="col">庫存數量</th>
+      <th scope="col">價格</th>
     </tr>
   </thead>
   <tbody>
+    <?php foreach($products as $p): ?>
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <td><?= $p['sid']?></td>
+      <td><?= $p['category']?></td>
+      <td><?= $p['product_name']?></td>
+      <td><?= $p['img']?></td>
+      <td><?= $p['size']?></td>
+      <td><?= $p['quantity']?></td>
+      <td><?= $p['price']?></td>
     </tr>
+    <?php endforeach; ?>
   </tbody>
   </table>
+  <div class="row">
+    <div class="col text-warning d-flex justify-content-end align-items-center">
+      <p class="px-2">共有<?= $totalRows?>筆資料</p>
+      <nav aria-label="Page navigation example">
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+    </div>
+
+  </div>
 </div>
 </div>
 </div>

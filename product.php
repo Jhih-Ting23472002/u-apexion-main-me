@@ -19,7 +19,7 @@
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">T恤</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">帽子</a></li>Ｆ
+            <li><a class="dropdown-item" href="#">帽子</a></li>
           </ul>
         </li>
       </ul>

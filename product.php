@@ -1,3 +1,4 @@
+<?php require __DIR__ . "/__connect_db.php";?>
 <?php require __DIR__ . "/__html_head.php"; ?>
 <div class="d-flex">
 <?php require __DIR__ . "/__navbar.php"; ?>

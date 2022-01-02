@@ -1,9 +1,12 @@
-<?php require __DIR__ . "/__connect_db.php";?>
+<?php require __DIR__ . "/__connect_db.php";
+$sql= "SELECT* FROM product";
+$product = $pdo->query($sql)->fetchAll();
+?>
 <?php require __DIR__ . "/__html_head.php"; ?>
 <div class="d-flex">
 <?php require __DIR__ . "/__navbar.php"; ?>
 <div class="container-fluid">
-<nav class="navbar navbar-expand-lg navbar-light mt-3 px-5">
+<nav class="navbar navbar-expand-lg navbar-light mt-3">
   <div class="container-fluid">
     <a class="navbar text-light" href="#">周邊商品</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +48,30 @@
     </div>
   </div>
 </nav>
+<!-- 下方列表 -->
+<div class="bd-example mt-3">
+  <table class="table table-hover text-light">
+      <thead>
+    <tr class="text-info">
+      <th scope="col">sid</th>
+      <th scope="col">category</th>
+      <th scope="col">product_name</th>
+      <th scope="col">img</th>
+      <th scope="col">size</th>
+      <th scope="col">quantity</th>
+      <th scope="col">price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+  </tbody>
+  </table>
+</div>
 </div>
 </div>
 <?php require __DIR__ . "/__scripts.php"; ?>

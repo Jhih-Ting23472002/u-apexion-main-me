@@ -1,4 +1,5 @@
 <?php require __DIR__ . "/__connect_db.php";
+$title='周邊商品';
 //幾筆資料一頁
 $perPage = 2;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;

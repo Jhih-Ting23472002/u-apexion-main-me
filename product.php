@@ -1,9 +1,7 @@
 <?php require __DIR__ . "/__connect_db.php";
 //幾筆資料一頁
 $perPage = 2;
-
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
-echo $page;
 $t_sql = "SELECT COUNT(1) FROM product";
 // 算總比數
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
@@ -15,7 +13,6 @@ $sql = sprintf("SELECT * FROM product LIMIT %s, %s", ($page-1)*$perPage, $perPag
 $products = $pdo->query($sql)->fetchAll();
 ?>
 <?php require __DIR__ . "/__html_head.php"; ?>
-<div class="d-flex">
   <?php require __DIR__ . "/__navbar.php"; ?>
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light pt-3 shadow ">
@@ -110,7 +107,7 @@ $products = $pdo->query($sql)->fetchAll();
                 </a>
               </li>
               <?php for ($i = 1; $i < $totalPages; $i++) : ?>
-                <li class="page-item">
+                <li class="page-item <?= $i==$page ?'active':''?>">
                   <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                 </li>
               <?php endfor; ?>
@@ -126,6 +123,6 @@ $products = $pdo->query($sql)->fetchAll();
       </div>
     </div>
   </div>
-</div>
+
 <?php require __DIR__ . "/__scripts.php"; ?>
 <?php require __DIR__ . "/__html_foot.php"; ?>

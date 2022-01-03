@@ -4,7 +4,7 @@
   <?php require __DIR__ . "/__navbar.php"; ?>
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light pt-3 shadow ">
-      <div class="container-fluid">
+      <div class="container-fluid"><i class="fas fa-laptop-house text-warning"></i>
         <a class="navbar text-warning" href="product.php" style="text-decoration:none;">所有商品</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -54,7 +54,7 @@
     </nav>
     <!-- 下方新增表單列表 -->
     <div class="d-flex">
-      <form class="container pt-4">
+      <form class="container pt-4 mx-2">
         <div class="form-row text-light">
           <div class=" mb-3">
             <label for="validationDefault01">商品名稱</label>
@@ -62,7 +62,15 @@
           </div>
           <div class=" mb-3">
             <label for="validationDefault02">產品分類</label>
-            <input type="text" class="form-control" id="validationDefault02" placeholder="分類" required>
+            <select class="custom-select d-block w-100" id="country" required="">
+              <option value=""><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">選擇...</font></font></option>
+              <option>
+                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">女生</font></font>
+            </option>
+            <option>
+                <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">男生</font></font>
+            </option>
+            </select>
           </div>
           <div class=" mb-3">
             <label for="validationDefaultUsername">產品照片</label>
@@ -84,8 +92,8 @@
           </div>
         </div>
         <div class="">
-          <select class="custom custom-select-lg mb-3">
-            <option selected>size</option>
+        <label class="text-light">尺寸</label>
+          <select class="mb-3">
             <option value="1">F</option>
             <option value="2">S</option>
             <option value="3">M</option>
@@ -96,7 +104,7 @@
         <button class="btn btn-primary" type="submit">資料送出</button>
 
       </form>
-      <div class="pt-4">
+      <div class="pt-4 mx-2">
         <img class="img-fluid " src="./img/logo.png" width="50" height="50">
       </div>
     </div>

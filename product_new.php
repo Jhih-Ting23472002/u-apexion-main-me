@@ -54,7 +54,7 @@
     </nav>
     <!-- 下方新增表單列表 -->
     <div class="d-flex">
-      <form class="container pt-4 mx-2">
+      <form class="container pt-5 mx-2">
         <div class="form-row text-light">
           <div class=" mb-3">
             <label for="validationDefault01">商品名稱</label>
@@ -104,8 +104,8 @@
         <button class="btn btn-primary" type="submit">資料送出</button>
 
       </form>
-      <div class="pt-4 mx-2">
-        <img class="img-fluid " src="./img/logo.png" width="50" height="50">
+      <div class="pt-5 mx-2">
+        <img class="img-fluid " src="./img/logo.png" width="75" height="75">
       </div>
     </div>
   </div>

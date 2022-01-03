@@ -1,7 +1,7 @@
 <?php require __DIR__ . "/__connect_db.php";
 $title='周邊商品';
 //幾筆資料一頁
-$perPage = 2;
+$perPage = 3;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 if ($page < 1) {
   header('Location: product.php');
@@ -26,7 +26,7 @@ $products = $pdo->query($sql)->fetchAll();
 <?php require __DIR__ . "/__navbar.php"; ?>
 <div class="container-fluid">
   <nav class="navbar navbar-expand-lg navbar-light pt-3 shadow ">
-    <div class="container-fluid">
+    <div class="container-fluid"><i class="fas fa-laptop-house text-warning"></i>
       <a class="navbar text-warning" href="product.php" style="text-decoration:none;">所有商品</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -86,6 +86,7 @@ $products = $pdo->query($sql)->fetchAll();
           <th scope="col">尺寸</th>
           <th scope="col">庫存數量</th>
           <th scope="col">價格</th>
+          <th scope="col">上架時間</th>
           <th scope="col">修改</th>
           <th scope="col">刪除</th>
         </tr>
@@ -99,7 +100,8 @@ $products = $pdo->query($sql)->fetchAll();
             <td><?= $p['img'] ?></td>
             <td><?= $p['size'] ?></td>
             <td><?= $p['quantity'] ?></td>
-            <td><?= $p['price'] ?></td>
+            <td class="text-warning"><?= $p['price'] ?></td>
+            <td><?= $p['create_date'] ?></td>
             <td><i class="fas fa-pencil-alt"></i></td>
             <td><i class="fas fa-trash-alt"></i></td>
           </tr>

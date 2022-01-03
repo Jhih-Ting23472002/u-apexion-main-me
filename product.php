@@ -1,12 +1,17 @@
 <?php require __DIR__ . "/__connect_db.php";
+//幾筆資料一頁
 $perPage = 2;
+
+$page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+echo $page;
 $t_sql = "SELECT COUNT(1) FROM product";
 // 算總比數
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
-$totalPages = ceil($totalRows/ $perPage);
+$totalPages = ceil($totalRows/$perPage);
 
 //提取表單資料
-$sql = "SELECT* FROM product";
+$sql = sprintf("SELECT * FROM product LIMIT %s, %s", ($page-1)*$perPage, $perPage);
+
 $products = $pdo->query($sql)->fetchAll();
 ?>
 <?php require __DIR__ . "/__html_head.php"; ?>
@@ -96,9 +101,9 @@ $products = $pdo->query($sql)->fetchAll();
       </table>
       <div class="row">
         <div class="col text-warning d-flex justify-content-end align-items-center">
-          <p class="px-2">共有<?= $totalRows?>筆資料</p>
+          <p class="px-2">共有<?= $totalRows ?>筆資料</p>
           <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-sm">
+            <ul class="pagination pagination">
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
@@ -106,7 +111,7 @@ $products = $pdo->query($sql)->fetchAll();
               </li>
               <?php for ($i = 1; $i < $totalPages; $i++) : ?>
                 <li class="page-item">
-                  <a class="page-link" href="?page=#<?= $i ?>"><?= $i ?></a>
+                  <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
                 </li>
               <?php endfor; ?>
               <li class="page-item">

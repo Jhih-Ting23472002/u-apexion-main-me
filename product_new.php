@@ -57,7 +57,7 @@ $title = '周邊商品';
     <!-- 下方新增表單列表 -->
     <!-- `category`, `product_name`, `img``size`, `quantity`, `price` -->
     <div class="d-flex">
-      <form class="container pt-5 mx-2" name="product_new" onsubmit="sandData();return false;">
+      <form class="container pt-5 mx-2" name="productForm" onsubmit="sendData(); return false;">
         <div class="form-row text-light">
           <div class="mb-3">
             <label for="product_name">商品名稱</label>
@@ -105,11 +105,11 @@ $title = '周邊商品';
         <div class="">
           <label class="text-light">尺寸</label>
           <select class="mb-3" id="size" name="size">
-            <option value="1">F</option>
-            <option value="2">S</option>
-            <option value="3">M</option>
-            <option value="4">L</option>
-            <option value="5">其他</option>
+            <option value="F">F</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="其他">其他</option>
           </select>
         </div>
         <button class="btn btn-outline-info" type="submit">資料送出</button>
@@ -123,9 +123,17 @@ $title = '周邊商品';
 </div>
 <?php require __DIR__ . "/__scripts.php"; ?>
 <script>
-  function sandData() {
-    const fd = new FormData(document.product_new);
-    fatch()
+    function sendData(){
+        const fd = new FormData(document.productForm);
+
+       fetch('product_new_api.php',{
+           method: 'POST',
+            body: fd,
+        }).then(r=>r.json())
+        .then(obj=>{
+            console.log(obj);
+        });
     }
-</script>
+        </script>     
+
 <?php require __DIR__ . "/__html_foot.php"; ?>

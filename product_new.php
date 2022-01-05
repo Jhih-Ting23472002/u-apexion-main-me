@@ -155,7 +155,7 @@ $pageName = 'product';
 
     let isPass = true;
     //檢查表單資料
-    if (product_name.value.length < 4) {
+    if (product_name.value.length < 2) {
       isPass = false;
       product_name.nextElementSibling.innerHTML = "請輸入正確商品名稱";
     }

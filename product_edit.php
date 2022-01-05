@@ -1,15 +1,17 @@
 <?php require __DIR__ . "/__connect_db.php";
 $title = '商品資訊修改';
 
-if (! isset($_GET['sid'])) {
-    header("Location: product.php"); exit;
+if(! isset($_GET['sid'])) {
+    header('Location: product.php');
+    exit;
 }
-    $sid = intval($_GET['sid']);
-    $row = $pdo->query("SELECT* FROM `product` WHERE sid=$sid")->fetch();
-
-    if(empty($row)){
-        
-    }
+$sid = intval($_GET['sid']);
+$row = $pdo->query("SELECT* FROM `product` WHERE sid=$sid")->fetch();
+//如果資料是空的轉向回去列表頁
+if(empty($row)){
+    header('Location: product.php');
+    exit;
+}
 ?>
 <?php require __DIR__ . "/__html_head.php"; ?>
 <div class="d-flex">
@@ -66,19 +68,20 @@ if (! isset($_GET['sid'])) {
         </nav>
         <!-- 下方新增表單列表 -->
         <div class="d-flex">
-            <form class="container pt-5 mx-2" name="productForm" onsubmit="sendData(); return false;">
+            <form class="container pt-3 mx-2" name="productForm" onsubmit="sendData(); return false;">
+            <input type="hidden" name="sid" value="<?=$row['sid']?>">
                 <div class="form-row text-light">
                     <div class="mb-3">
                         <label for="product_name">商品名稱</label>
-                        <input type="text" class="product-wrap form-control" id="product_name" name="product_name" placeholder="名稱">
+                        <input type="text" class="product-wrap form-control" id="product_name" name="product_name" placeholder="名稱" value="<?=$row['product_name'] ?>">
                         <div class="text-warning"></div>
                     </div>
                     <div class=" mb-3">
                         <label for="category">產品分類</label>
                         <select class="custom-select d-block w-100 form-control" id="category" name="category" required="">
-                            <option value="">
+                            <option>
                                 <font style="vertical-align: inherit;">
-                                    <font style="vertical-align: inherit;">選擇...</font>
+                                    <font style="vertical-align: inherit;"><?=$row['category'] ?></font>
                                 </font>
                             </option>
                             <option>
@@ -106,19 +109,19 @@ if (! isset($_GET['sid'])) {
                     <div class=" mb-3">
                         <label for="img">產品照片</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="img" name="img" placeholder="照片" aria-describedby="inputGroupPrepend2">
+                            <input type="text" class="form-control" id="img" name="img" placeholder="照片" aria-describedby="inputGroupPrepend2" value="<?=$row['img'] ?>">
                         </div>
                     </div>
                     <div class=" mb-3">
                         <label for="quantity">庫存數量</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="請填入數字" aria-describedby="inputGroupPrepend2">
+                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="請填入數字" aria-describedby="inputGroupPrepend2" value="<?=$row['quantity'] ?>">
                         </div>
                     </div>
                     <div class=" mb-3">
                         <label for="price">價格</label>
                         <div class="input-group">
-                            <input type="number" class="form-control" id="price" name="price" placeholder="請填入數字" aria-describedby="inputGroupPrepend2">
+                            <input type="number" class="form-control" id="price" name="price" placeholder="請填入數字" aria-describedby="inputGroupPrepend2" value="<?=$row['price'] ?>">
                         </div>
                     </div>
                 </div>
@@ -126,6 +129,7 @@ if (! isset($_GET['sid'])) {
                     <div class="m-1">
                         <label class="text-light">尺寸</label>
                         <select class="mb-3" id="size" name="size">
+                        <option><?=$row['size'] ?></option>
                             <option value="F">F</option>
                             <option value="S">S</option>
                             <option value="M">M</option>
@@ -136,6 +140,7 @@ if (! isset($_GET['sid'])) {
                     <div class="m-1">
                         <label class="text-light">顏色</label>
                         <select class="mb-3" id="size" name="style">
+                        <option><?=$row['style'] ?></option>
                             <option value="黑色">黑色</option>
                             <option value="白色">白色</option>
                             <option value="藍色">藍色</option>
@@ -143,7 +148,7 @@ if (! isset($_GET['sid'])) {
                     </div>
                 </div>
 
-                <button class="btn btn-outline-info" type="submit">資料送出</button>
+                <button class="btn btn-outline-warning" type="submit">修改完成送出</button>
 
             </form>
             <div class="pt-5 mx-2">
@@ -164,7 +169,7 @@ if (! isset($_GET['sid'])) {
 
         let isPass = true;
         //檢查表單資料
-        if (product_name.value.length < 4) {
+        if (product_name.value.length < 2) {
             isPass = false;
             product_name.nextElementSibling.innerHTML = "請輸入正確商品名稱";
         }
@@ -177,18 +182,18 @@ if (! isset($_GET['sid'])) {
         //拿取輸入的資料
         const fd = new FormData(document.productForm);
 
-        fetch('product_new_api.php', {
+        fetch('product_edit_api.php', {
                 method: 'POST',
                 body: fd,
             }).then(r => r.json())
             .then(obj => {
                 console.log(obj);
                 if (obj.success) {
-                    alert('新增成功');
+                    alert('修改成功');
                     //新增完跳回商品頁
                     location.href = 'product.php';
                 } else {
-                    alert(obj.error || '資料新增發生錯誤');
+                    alert(obj.error || '資料修改發生錯誤');
                 }
             })
     }

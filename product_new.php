@@ -1,5 +1,6 @@
 <?php require __DIR__ . "/__connect_db.php";
 $title = '周邊商品';
+$pageName = 'product';
 ?>
 <?php require __DIR__ . "/__html_head.php"; ?>
 <div class="d-flex">
@@ -81,6 +82,16 @@ $title = '周邊商品';
                   <font style="vertical-align: inherit;">男生</font>
                 </font>
               </option>
+              <option>
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">孩童</font>
+                </font>
+              </option>
+              <option>
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">配件</font>
+                </font>
+              </option>
             </select>
           </div>
           <div class=" mb-3">
@@ -98,7 +109,7 @@ $title = '周邊商品';
           <div class=" mb-3">
             <label for="price">價格</label>
             <div class="input-group">
-              <input type="number" class="form-control" id="price" name="price" placeholder="請填入數字" aria-describedby="inputGroupPrepend2" required>
+              <input type="number" class="form-control" id="price" name="price" placeholder="請填入數字" aria-describedby="inputGroupPrepend2">
             </div>
           </div>
         </div>

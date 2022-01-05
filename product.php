@@ -105,8 +105,16 @@ $products = $pdo->query($sql)->fetchAll();
             <td><?= $p['quantity'] ?></td>
             <td class="text-warning"><?= $p['price'] ?></td>
             <td><?= $p['create_date'] ?></td>
-            <td><i class="fas fa-pencil-alt"></i></td>
-            <td><i class="fas fa-trash-alt"></i></td>
+            <td>
+              <a href="product_edit.php?sid=<?= $p['sid'] ?>">
+              <i class="fas fa-pencil-alt"></i>
+              </a>
+            </td>
+            <td>
+              <a href="product_delete.php?sid=<?= $p['sid'] ?>" onclick="return conform('確定要刪除這筆資料嗎')">
+              <i class="fas fa-trash-alt"></i>
+            </a>
+            </td>
           </tr>
         <?php endforeach; ?>
       </tbody>

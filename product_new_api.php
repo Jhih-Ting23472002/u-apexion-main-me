@@ -37,7 +37,7 @@ $stmt->execute([
     $style = $_POST['style'] ?? '',
     $size = $_POST['size'] ?? '',
     $quantity,
-    $price = $_POST['price'] ?? '',
+    empty($_POST['price']) ? NULL : $_POST['price'],
 ]);
 
 $output['success'] = $stmt->rowCount() == 1;

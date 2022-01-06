@@ -18,6 +18,7 @@ if ($page > $totalPages) {
   exit;
 }
 
+
 //提取表單資料
 $sql = sprintf("SELECT * FROM product LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
 

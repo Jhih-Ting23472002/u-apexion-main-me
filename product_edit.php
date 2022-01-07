@@ -109,7 +109,7 @@ if (empty($row)) {
                     <div class=" mb-3">
                         <label for="img">產品照片</label>
                         <div class="input-group">
-                            <input accept="image/*" type='file' id="imgInp" class="form-control" name="img" placeholder="照片" aria-describedby="inputGroupPrepend2" value="<?= json_encode($row['img']) ?>">
+                            <input accept="image/*" type='file' id="imgInp" class="form-control" name="img" placeholder="照片" aria-describedby="inputGroupPrepend2" value="">
                         </div>
                     </div>
                     <div class=" mb-3">
@@ -162,9 +162,10 @@ if (empty($row)) {
 <script>
     const product_name = document.querySelector('#product_name');
     const quantity = document.querySelector('#quantity');
-//拿取img路徑
-    const data = <?= json_encode($row) ?>;
-    document.querySelector("#product_blah").setAttribute("src",`/img/product_img${data}`);
+    //拿取img路徑
+    const data = "<?= $row['img'] ?>";
+    console.log('data', data);
+    document.querySelector('#product_blah').setAttribute("src", `./img/product_img/${data}`);
 
     function sendData() {
         product_name.nextElementSibling.innerHTML = '';

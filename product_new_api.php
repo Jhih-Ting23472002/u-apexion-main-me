@@ -54,6 +54,7 @@ if(! empty($_FILES['img'])) {
     $target = $upload_folder. '/'. $filename;
     if( move_uploaded_file($_FILES['img']['tmp_name'], $target)){
         $output['success'] = true;
+        $output['filename'] = $filename;
     } else {
         $output['error'] = '無法移動檔案';
     }

@@ -44,7 +44,7 @@ if (!empty($_FILES['img'])) {
     $ext = $exts[$_FILES['img']['type']] ?? '';  // 拿到對應的副檔名
     if (!empty($ext)) {
 
-        $filename = $_FILES['img']['name'];
+        $filename = $_FILES['img']['name'] . rand() . $ext;
         //設定變數去接
         $target = $upload_folder . '/' . $filename;
         if (move_uploaded_file($_FILES['img']['tmp_name'], $target)) {

@@ -78,7 +78,7 @@ if (empty($row)) {
                     </div>
                     <div class=" mb-3">
                         <label for="category">產品分類</label>
-                        <select class="custom-select d-block w-100 form-control" id="category" name="category" required="">
+                        <select class="custom-select d-block w-100 form-control" id="category" name="category" required>
                             <option>
                                 <font style="vertical-align: inherit;">
                                     <font style="vertical-align: inherit;"><?= $row['category'] ?></font>
@@ -109,7 +109,7 @@ if (empty($row)) {
                     <div class=" mb-3">
                         <label for="img">產品照片</label>
                         <div class="input-group">
-                            <input accept="image/*" type='file' id="imgInp" class="form-control" name="img" placeholder="照片" aria-describedby="inputGroupPrepend2" value="">
+                            <input accept="image/*" type='file' id="imgInp" class="form-control" name="img" placeholder="照片" aria-describedby="inputGroupPrepend2" value="<?= $row['img'] ?>">
                         </div>
                     </div>
                     <div class=" mb-3">

@@ -8,7 +8,7 @@ $pageName = 'product';
 // }
 
 //幾筆資料一頁
-$perPage = 5;
+$perPage = 7;
 $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
 if ($page < 1) {
   header('Location: product.php');
@@ -24,14 +24,13 @@ if ($page > $totalPages) {
   exit;
 }
 
-$nowProduct = '';
+$newProduct = '';
 if (isset($_GET["category"])) {
-  $nowProduct = " WHERE category='" . $_GET["category"] . "' AND product_name='" . $_GET["product_name"] . "'";
+  $newProduct = " WHERE category='" . $_GET["category"] . "' AND product_name='" . $_GET["product_name"] . "'";
 }
 
 //提取表單資料
-$sql = sprintf("SELECT * FROM product %s LIMIT %s, %s", $nowProduct, ($page - 1) * $perPage, $perPage);
-
+$sql = sprintf("SELECT * FROM product %s LIMIT %s, %s", $newProduct, ($page - 1) * $perPage, $perPage);
 $products = $pdo->query($sql)->fetchAll();
 ?>
 <?php require __DIR__ . "/__html_head.php"; ?>

@@ -25,7 +25,9 @@
             </a>
         </li>
         <li>
-            <a href="trans-button.php" class="nav-link ">
+            <a href="trans-button.php?sid=2"
+                class="nav-link <?= $pageName == 'trans_button' ? 'active disabled' : '' ?>">
+
                 <svg class="bi me-2" width="10" height="25">
                     <use xlink:href="#grid"></use>
                 </svg>
@@ -41,7 +43,7 @@
             </a>
         </li>
         <li>
-            <a href="forum-list copy.php" class="nav-link <?= $pageName == 'forum' ? 'active disabled' : '' ?>">
+            <a href="forum-list copy.php" class="nav-link <?= $pageName == 'forum-list' ? 'active disabled' : '' ?>">
                 <svg class="bi me-2" width="10" height="25">
                     <use xlink:href="#people-circle"></use>
                 </svg>
@@ -57,7 +59,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="user_login.php" class="nav-link <?= $pageName == 'user_list' ? 'active disabled' : '' ?>">
+            <a href="user_login.php?pagefrom=login"
+                class="nav-link <?= $pageName == 'user_list' ? 'active disabled' : '' ?>">
                 <svg class="bi me-2" width="10" height="25">
                     <use xlink:href="#home"></use>
                 </svg>
@@ -71,8 +74,11 @@
     <div class="dropdown">
         <a href="#" class="d-flex align-items-center  text-decoration-none dropdown-toggle " id="dropdownUser1"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <div id="userPic" style="width: 50px"><img src="./img/userpic.png" alt=""  height=""
-                    class=" me-2"></i></div>
+            <?php if (isset($_SESSION['admin'])) { ?>
+            <div id="userPic" style="width: 50px"><img src="./img/userpic.png" alt="" height="" class=" me-2"></i></div>
+            <?php } else { ?>
+            <div id="userPic" style="width: 50px"><i class="fas fa-user"></i></div>
+            <?php } ?>
             <svg class="bi me-2" width="5" height="5">
                 <use xlink:href="#speedometer2"></use>
             </svg>
